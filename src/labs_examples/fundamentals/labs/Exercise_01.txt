@@ -19,6 +19,7 @@ Fundamentals Exercise 1: CLI
          c. Use $ grep to search for a word inside file
 
 Example Output (pwd):
-    1. Cadens-MacBook-Pro:CodingNomads cadenmackenzie$ pwd
-       /Users/cadenmackenzie/Documents/CodingNomads
+    1. cd /Users/cadenmackenzie/Documents/CodingNomads
+    2. mkdir Terminal_testing
+    3. 
 

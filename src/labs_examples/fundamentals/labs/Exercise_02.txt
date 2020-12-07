@@ -4,6 +4,7 @@
 
 Initializing git folder
     1. In CodingNomads folder, create new folder git_practice
+    mkdir git_practice
     2. Inside git_practice:
         a. Initialize folder as a git folder (make sure you are in the correct folder when initializing) by running
             the "git init" command within the git_practice folder.
