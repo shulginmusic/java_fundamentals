@@ -8,28 +8,69 @@ Initializing git folder
     2. Inside git_practice:
         a. Initialize folder as a git folder (make sure you are in the correct folder when initializing) by running
             the "git init" command within the git_practice folder.
+
+            cd git_practice
+            git init
         b. Make new file
+            touch new.md
+
         c. Add file
+            git add new.md
         d. Commit file
+            git commit -m 'new file'
         c. On Github, create new git_practice repository
+            done
         d. Add this new GitHub repository as a new "remote" to your local Git repo. You can do this by using the command
             git remote add <ANY_NAME> <URL_OF_NEW_GITHUB_REPO.git>
+
+            git remote add origin https://github.com/shulginmusic/git_practice.git
+            dmfan113@MacBook-Pro-dmfan113 git_practice % git remote -v
+            origin	https://github.com/shulginmusic/git_practice.git (fetch)
+            origin	https://github.com/shulginmusic/git_practice.git (push)
+
         d. Push commit file to Github
+            git push -u origin master
+
         e. Practice the following git flow until you feel comfortable:
             i.   Create or modify file
             ii.  Add file(s)
             iii. Commit file(s)
             iv.  Push file(s) to Github repository
 
+            done
+
 Adding a remote
     1. Create new personal repository on Github named "git_practice_2".
     2. On local machine, add the new remote address to the same git repo you were working with in the previous section above
         (directions are provided on Github with new repo is created)
+        git remote add practice_2 https://github.com/shulginmusic/git_practice_2.git
+
     3. Push local git repository to your Github using the new remote.
+        git push practice_2 master
+        Enumerating objects: 6, done.
+        Counting objects: 100% (6/6), done.
+        Delta compression using up to 12 threads
+        Compressing objects: 100% (4/4), done.
+        Writing objects: 100% (6/6), 499 bytes | 499.00 KiB/s, done.
+        Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+        To https://github.com/shulginmusic/git_practice_2.git
+         * [new branch]      master -> master
+
 
 Cloning repository from Github
     1. Find a repository on Github
+    https://github.com/mzucker/python-tuner
     2. Clone repository to local machine
+    done
     3. Create new repository on Github
+    https://github.com/shulginmusic/python_tuner_clone
     4. Add new remote on local machine
+
+    dmfan113@MacBook-Pro-dmfan113 python-tuner % git remote -v
+    clone	https://github.com/shulginmusic/python_tuner_clone.git (fetch)
+    clone	https://github.com/shulginmusic/python_tuner_clone.git (push)
+    origin	https://github.com/mzucker/python-tuner (fetch)
+    origin	https://github.com/mzucker/python-tuner (push)
+
     5. Push to new Github repository
+    git push clone master

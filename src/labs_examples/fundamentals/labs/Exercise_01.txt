@@ -19,7 +19,41 @@ Fundamentals Exercise 1: CLI
          c. Use $ grep to search for a word inside file
 
 Example Output (pwd):
-    1. cd /Users/cadenmackenzie/Documents/CodingNomads
+    1. cd /Users/dmfan113/Documents/Code/CodingNomads
     2. mkdir Terminal_testing
-    3. 
+    3. cd Terminal_testing
+        touch file_one.txt file_two.txt file_three.txt
+        pwd
+        /Users/dmfan113/Documents/Code/CodingNomads/Terminal_testing
+        ls -lah
+        total 0
+        drwxr-xr-x   5 dmfan113  staff   160B Dec  9 18:45 .
+        drwxr-xr-x  15 dmfan113  staff   480B Dec  9 18:44 ..
+        -rw-r--r--   1 dmfan113  staff     0B Dec  9 18:45 file_one.txt
+        -rw-r--r--   1 dmfan113  staff     0B Dec  9 18:45 file_three.txt
+        -rw-r--r--   1 dmfan113  staff     0B Dec  9 18:45 file_two.txt
+    5. mkdir new_folder
+    6. cp file_three.txt new_folder
+    7. mv file_one.txt new_folder
+    8.
+        a. rm file_one.txt
+        b. rm -r new_folder
+    9.
+        a. vim file_two.txt (use i to write text, then wq)
+        b. cat file_two.txt
+           writing sample text
+
+
+           test
+
+
+           test
+
+
+           test
+        c. grep test file_two.txt
+           test
+           test
+           test
+
 
