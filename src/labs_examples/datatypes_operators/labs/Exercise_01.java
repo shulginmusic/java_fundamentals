@@ -17,6 +17,20 @@ public class Exercise_01 {
     public static void main(String[] args) {
 
         // write code here
+        int fifty; double fiveHundred; float twoPointFive; char b;
+
+        fifty = 50;
+        fiveHundred = 50.0;
+        twoPointFive = 2.5f;
+        b = 'b';
+
+        System.out.println(fifty);
+        System.out.println(fiveHundred);
+        System.out.println(twoPointFive);
+        System.out.println(b);
+
+
+
 
     }
 }

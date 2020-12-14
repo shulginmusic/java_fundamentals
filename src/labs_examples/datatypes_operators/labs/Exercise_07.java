@@ -23,7 +23,11 @@ public class Exercise_07 {
         // assign input to variable as int
         int days = scanner.nextInt();
 
-        // write completed code here
 
+        // write completed code here
+        // multiply the time value by 86400 source:google
+        int seconds = days * 86400;
+        System.out.print(seconds);
+        //But how does this class work? Need to find docs...
     }
 }

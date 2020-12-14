@@ -24,6 +24,13 @@ public class Exercise_02 {
     public static void main(String[] args) {
 
         // write code here
+        int ten = 10;
+        double tenDouble = ten;
+        System.out.println(tenDouble);
+
+        double tenPointFive = 10.5;
+        int tenNew = (int)tenPointFive; //Decimals are removed, the number is rounded down
+        System.out.println(tenNew);
 
     }
 }
