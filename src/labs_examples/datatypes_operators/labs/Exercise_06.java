@@ -25,8 +25,10 @@ public class Exercise_06 {
         //Volume = area * height
         double volume = surfaceArea * height;
         float volumeRoughly = (float) volume;
+        double x = Math.round(volumeRoughly*100.0)/100.0; //convert to 2 decimal places!!!
+
         System.out.println("The volume of the cylinder is " 
-        	+ volumeRoughly);
+        	+ x);
 
 
 

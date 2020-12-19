@@ -19,5 +19,7 @@ class ArithmeticOperators {
         System.out.println(ten * five); //50
         System.out.println(ten / five); //2
         System.out.println(ten % five); //0
+        double x = Math.pow(4.0, 3.0);
+        System.out.println(x);
     }
 }

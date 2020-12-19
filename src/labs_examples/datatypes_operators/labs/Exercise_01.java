@@ -15,9 +15,14 @@ package labs_examples.datatypes_operators.labs;
 public class Exercise_01 {
 
     public static void main(String[] args) {
-
+        for (String s : args){
+            System.out.println(s);
+        }
         // write code here
-        int fifty; double fiveHundred; float twoPointFive; char b;
+        int fifty;
+        double fiveHundred;
+        float twoPointFive;
+        char b;
 
         fifty = 50;
         fiveHundred = 50.0;

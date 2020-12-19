@@ -38,11 +38,11 @@ class LogicalOperators {
             System.out.println("Either a or b are true but not both");
         }
 
-        if (!(b)){
+        if (!b){
             System.out.println("b is not true");
         }
 
-        if(!!(a)) {
+        if(!!a) {
             System.out.println("a is true");
         }
     }
