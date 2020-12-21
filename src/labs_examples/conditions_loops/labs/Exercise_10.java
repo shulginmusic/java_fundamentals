@@ -8,4 +8,13 @@ package labs_examples.conditions_loops.labs;
  */
 
 public class Exercise_10 {
+    public static void main(String[] args) {
+        for (int i = 100; i >=0; i--){
+            if ((i % 5) != 0){
+                continue;
+            }
+            System.out.println(i);
+        }
+    }
 }
+

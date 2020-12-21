@@ -8,4 +8,14 @@ package labs_examples.conditions_loops.labs;
  */
 
 public class Exercise_06 {
+    public static void main(String[] args) {
+        int i = 0;
+        int sum = 0;
+
+        while(i != 101){
+            sum += i;
+            i++;
+        }
+        System.out.println("The sum of nums between 1 - 100 is " + sum);
+    }
 }

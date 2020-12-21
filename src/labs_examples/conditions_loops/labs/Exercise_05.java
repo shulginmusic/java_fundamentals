@@ -1,4 +1,5 @@
 package labs_examples.conditions_loops.labs;
+import java.util.Scanner;
 
 /**
  * Conditions and Loops Exercise 5: Calculator
@@ -15,5 +16,64 @@ package labs_examples.conditions_loops.labs;
  *
  */
 
+//Referring to Example 19
+
 public class Exercise_05 {
+    public static void main(String[] args) {
+        int sum = calculateSum();
+        System.out.println("The sum is " + sum);
+//        int average = calculateAverage(sum);
+//        System.out.println("testtests " + average);
+
+    }
+
+    public static int getLowerNum() {
+        //create scanner
+        Scanner scanner = new Scanner(System.in);
+        //Prompt user
+        System.out.println("Enter a lower number");
+        //Assing input to an int variable
+        int lowerNum = scanner.nextInt();
+        return lowerNum;
+    }
+
+    public static int getHigherNum() {
+        //create scanner
+        Scanner scanner = new Scanner(System.in);
+        //Prompt user
+        System.out.println("Enter a higher number");
+        //Assigning input to an int variable
+        int higherNum = scanner.nextInt();
+        return higherNum;
+    }
+
+    public static int calculateSum() {
+        int i = getLowerNum();
+        int z = getHigherNum();
+        int sum = 0;
+        for (; i <= z; i++) {
+            sum += i;
+        }
+        return sum;
+    }
 }
+
+//
+//    public static int calculateAverage(int sum){
+//        //Average is the sum of numbers divided by the number of value in a set
+//
+//        //get number of values using for loop
+//        for(int i)
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
