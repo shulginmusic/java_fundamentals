@@ -25,6 +25,19 @@ public class Exercise_07 {
         //Assigning input to a String variable
         String word = scanner.next();
         String vowels = "aeiouy";
-        if 
+        int count = 0;
+
+        while (count < word.length()) {
+            char letter = word.charAt(count);
+            if (vowels.indexOf(letter) != -1) {
+                System.out.println("the first vowel in " + word + " is " + letter);
+                return;
+            }
+            count++;
+        }
+        System.out.println("There is no vowel in " + word);
     }
 }
+
+
+

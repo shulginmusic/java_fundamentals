@@ -13,15 +13,34 @@ import java.util.Scanner;
 public class Exercise_03 {
 
     public static void main(String[] args) {
-        String month = getMonth();
-        System.out.println(month);
+        boolean coninuePlaying = true;
+        while(coninuePlaying){
+            String month = getMonth();
+            System.out.println(month);
+            coninuePlaying = playAgain();
+        }
+        System.out.println("Goodbye");
+    }
+
+    public static boolean playAgain(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Would you like to play again? y/n");
+        String response = scanner.next();
+        if(!response.equalsIgnoreCase("y")){
+            return false;
+        }
+        return true;
     }
 
     public static int getNum() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter a number and I will give you"
-                + " the month of the year");
-        int num = scanner.nextInt();
+        int num = 0;
+        do{
+            System.out.println("Enter a number between 1-12 and I will give you"
+                    + " the month of the year");
+            num = scanner.nextInt();
+        } while(num < 1 || num > 12);
+
         // System.out.println("test " + num);
         return num;
 

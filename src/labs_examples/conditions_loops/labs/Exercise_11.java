@@ -27,7 +27,7 @@ public class Exercise_11 {
             for(int y = 1; y <= 12; y++){
                 System.out.print((y*i) + " |");
             }
-            System.out.println("\n");
+            System.out.println();
         }
     }
 }

@@ -20,54 +20,41 @@ import java.util.Scanner;
 
 public class Exercise_05 {
     public static void main(String[] args) {
-        int sum = calculateSum();
-        System.out.println("The sum is " + sum);
-//        int average = calculateAverage(sum);
-//        System.out.println("testtests " + average);
+        calculateSumAndAverage();
 
     }
 
-    public static int getLowerNum() {
+    public static int getNumFromUser(boolean lower) {
         //create scanner
         Scanner scanner = new Scanner(System.in);
         //Prompt user
-        System.out.println("Enter a lower number");
-        //Assing input to an int variable
-        int lowerNum = scanner.nextInt();
-        return lowerNum;
-    }
-
-    public static int getHigherNum() {
-        //create scanner
-        Scanner scanner = new Scanner(System.in);
-        //Prompt user
-        System.out.println("Enter a higher number");
-        //Assigning input to an int variable
-        int higherNum = scanner.nextInt();
-        return higherNum;
-    }
-
-    public static int calculateSum() {
-        int i = getLowerNum();
-        int z = getHigherNum();
-        int sum = 0;
-        for (; i <= z; i++) {
-            sum += i;
+        if (lower){
+            System.out.println("Enter a lower number:");
+        } else{
+            System.out.println("Enter a higher number:");
         }
-        return sum;
+        //Assing input to an int variable
+        int num = scanner.nextInt();
+        return num;
+
+    }
+
+    public static void calculateSumAndAverage() {
+        int lower = getNumFromUser(true); //this is the lower num
+        int higher = getNumFromUser(false);
+        double sum = 0;
+        double count = 0;
+        for (int i = lower; i <= higher; i++) {
+            sum += i;
+            count++;
+        }
+
+        double average = sum / count;
+        System.out.println("The sum is " + sum);
+        System.out.println("The average is " + average);
+
     }
 }
-
-//
-//    public static int calculateAverage(int sum){
-//        //Average is the sum of numbers divided by the number of value in a set
-//
-//        //get number of values using for loop
-//        for(int i)
-//    }
-//}
-
-
 
 
 

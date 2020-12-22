@@ -20,14 +20,27 @@ public class Exercise_02 {
         // 1) create scanner (don't forget to import Scanner!)
         Scanner scanner = new Scanner(System.in);
         // 2) prompt user
-        System.out.println("Enter a number and "
-                + "I will give you the day of the week");
+
 
         // 3) assign input to variable as int
-        int num = scanner.nextInt();
+        int num = 0;
+        boolean continuePlaying = true;
 
-        // 4) write completed code here
-        if (num > 0 && num < 8) {
+        while(continuePlaying) {
+
+
+            do {
+                System.out.println("Enter a number between 1 and 7 "
+                        + "I will give you the day of the week\nPress -1 to quit");
+                num = scanner.nextInt();
+                if (num == -1) {
+                    System.out.println("bye");
+                    return;
+                }
+            } while (num < 1 || num > 7);
+
+            // 4) write completed code here
+
             if (num == 1) {
                 System.out.println("Monday");
             } else if (num == 2) {
@@ -43,8 +56,13 @@ public class Exercise_02 {
             } else if (num == 7) {
                 System.out.println("Sunday");
             }
-        } else {
-            System.out.println("Other");
+
+            System.out.println("Would you like to play again?(y/n)");
+            String response = scanner.next();
+            if (!response.equalsIgnoreCase("y")){
+                continuePlaying = false;
+            }
         }
+        System.out.println("See you later");
     }
 }
