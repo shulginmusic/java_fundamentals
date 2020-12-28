@@ -3,7 +3,7 @@ package labs_examples.arrays.labs;
 /**
  *  2D Array
  *
- *      Creat and populate a 5x5 2D array with multiples of 3, starting with 3. Once populated, print out the results.
+ *      Create and populate a 5x5 2D array with multiples of 3, starting with 3. Once populated, print out the results.
  *
  *      The output should look something like this:
  *
@@ -18,6 +18,23 @@ package labs_examples.arrays.labs;
 public class Exercise_03 {
 
     public static void main(String[] args) {
-        
+        //create array
+        int [] [] multiplesOfThree = new int [5] [5];
+        //we'll populate using this variable
+        int x = 3;
+        for (int i = 0; i < multiplesOfThree.length; i++) {
+            for(int z = 0; z < multiplesOfThree[i].length; z++){
+                multiplesOfThree [i] [z] = x;
+                x += 3; //so that next time it's a higher multiple of 3
+
+            }
+        }
+
+        for (int i = 0; i < multiplesOfThree.length; i++){
+            for (int y : multiplesOfThree[i]){
+                System.out.print(y + " ");
+            }
+            System.out.println();//print a new line for each new row after first
+        }
     }
 }

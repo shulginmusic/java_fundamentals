@@ -14,21 +14,48 @@ package labs_examples.arrays.labs;
  */
 public class Exercise_06 {
 
-    public static void main(String[] args){
-        int[] nums = {45, 87, 62, 99, 1, 42, 12};
+//    public static void main(String[] args){
+//        int[] nums = {45, 87, 62, 99, 1, 42, 12};
+//
+//        int temp;
+//
+//        // Question: in the for loop below, why do we divide "nums.length" by 2?
+//        for(int i = 0; i < nums.length / 2; i++){
+//            // swap elements at indexes in array
+//            // you have two indices readily available for you to use "i" (which increments) and "nums.length"
+//            // you've also got this "temp" variable you can use to hold a value temporarily
+//
+//        }
+//        System.out.print("Contents of array after for loop - ");
+//        // print each element of the array to verify reverse order
+//        for(int i : nums){
+//            System.out.print(i + " ");
+//        }
+//    }
 
-        int temp;
 
-        // Question: in the for loop below, why do we divide "nums.length" by 2?
-        for(int i = 0; i < nums.length / 2; i++){
-            // swap elements at indexes in array
-            // you have two indices readily available for you to use "i" (which increments) and "nums.length"
-            // you've also got this "temp" variable you can use to hold a value temporarily
+    public static void main(String[] args) {
+        int [] numArr = {1,5,10,15,20,25,30, 35, 40}; //length of 10
+        arrayReverse(numArr);
+    }
+
+    public static void arrayReverse(int intArray[]){
+        System.out.println("Original Array: ");
+
+        for (int z : intArray){
+            System.out.print(z + " - ");
         }
-        System.out.print("Contents of array after for loop - ");
-        // print each element of the array to verify reverse order
-        for(int i : nums){
-            System.out.print(i + " ");
+        int i, temp; //declare the vars
+        for (i = 0; i < intArray.length / 2 ; i++){
+            temp = intArray[i]; //temporary var = value at i
+            intArray[i] = intArray[intArray.length - i - 1];//reassigning intArray[i] to the last one,
+            //(like intArray[i] = intArray[10 - 0 - 1]; then the second last one, etc.
+            intArray[intArray.length - i - 1] = temp;//put the first one to the last one
+        } // how would you print each iteration???
+
+        System.out.println("\nArray reversed: ");
+        for (int z : intArray){
+            System.out.print(z + " - ");
         }
     }
 
