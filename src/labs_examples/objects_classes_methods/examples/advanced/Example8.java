@@ -28,7 +28,7 @@ class ErrorInfo {
     }
 }
 
-class ErrInfo {
+public class Example8 {
     public static void main(String args[]) {
         ErrorInfo err = new ErrorInfo();
         Err e;

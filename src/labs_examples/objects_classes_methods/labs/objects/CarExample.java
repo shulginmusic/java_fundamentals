@@ -5,7 +5,7 @@ package labs_examples.objects_classes_methods.labs.objects;
  * /
  * */
 
-class Example {
+public class CarExample {
 
     public static void main(String[] args){
 

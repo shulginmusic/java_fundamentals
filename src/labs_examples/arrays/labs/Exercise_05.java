@@ -18,7 +18,9 @@ public class Exercise_05 {
             String name = "Efim";
             char letter = name.charAt(i);
             myName[i] = letter;
-            System.out.print(myName[i] + " ");
+        }
+        for (int i = myName.length - 1; i >= 0; i-=2){
+            System.out.println(myName[i]);
         }
     }
 

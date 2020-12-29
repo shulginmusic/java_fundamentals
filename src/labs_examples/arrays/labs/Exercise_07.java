@@ -15,7 +15,7 @@ import java.util.Collections;
 public class Exercise_07 {
     public static void main(String[] args) {
         //Create an array list
-        ArrayList<String> dogs = new ArrayList<String>();
+        ArrayList<String> dogs = new ArrayList();
         //populate an array list
         dogs.add("daschhound");
         dogs.add("labradoodle");
@@ -51,16 +51,27 @@ public class Exercise_07 {
 
         //Create an array list of ints using the Integer wrapper class!
 
-        ArrayList<Integer> nums = new ArrayList<Integer>();
+        ArrayList<Integer> nums = new ArrayList();
 
         for (int i = 0; i <= 100000; i+=50) {
             nums.add(i);
         }
         System.out.println(nums.get(50));
 
+        String num = "7";
+        int numInt = Integer.parseInt(num);
+        System.out.println(numInt);
+        System.out.println(Integer.bitCount(numInt));
+
+        /*
+            74612
+
+            0000 0000 0000
 
 
 
+
+         */
 
 
     }

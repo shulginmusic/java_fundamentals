@@ -12,7 +12,7 @@ package labs_examples.arrays.labs;
  *      Hint: you have two index
  *
  */
-public class Exercise_06 {
+//public class Exercise_06 {
 
 //    public static void main(String[] args){
 //        int[] nums = {45, 87, 62, 99, 1, 42, 12};
@@ -33,6 +33,7 @@ public class Exercise_06 {
 //        }
 //    }
 
+public class Exercise_06 {
 
     public static void main(String[] args) {
         int [] numArr = {1,5,10,15,20,25,30, 35, 40}; //length of 10
@@ -40,23 +41,27 @@ public class Exercise_06 {
     }
 
     public static void arrayReverse(int intArray[]){
-        System.out.println("Original Array: ");
+        printArray(intArray, "Original array: ");
 
-        for (int z : intArray){
-            System.out.print(z + " - ");
-        }
         int i, temp; //declare the vars
-        for (i = 0; i < intArray.length / 2 ; i++){
+        for (i = 0; i < intArray.length / 2; i++){
             temp = intArray[i]; //temporary var = value at i
             intArray[i] = intArray[intArray.length - i - 1];//reassigning intArray[i] to the last one,
             //(like intArray[i] = intArray[10 - 0 - 1]; then the second last one, etc.
             intArray[intArray.length - i - 1] = temp;//put the first one to the last one
+            printArray(intArray, "Iteration #" + i);
         } // how would you print each iteration???
 
-        System.out.println("\nArray reversed: ");
-        for (int z : intArray){
+//        System.out.println("\nArray reversed: ");
+        printArray(intArray, "Array reversed: ");
+    }
+
+    public static void printArray(int[] numsArray, String message){
+        System.out.println(message);
+        for (int z : numsArray){
             System.out.print(z + " - ");
         }
+        System.out.println();
     }
 
 }

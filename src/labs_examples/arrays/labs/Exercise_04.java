@@ -18,8 +18,8 @@ public class Exercise_04 {
                 {"lada", "volga"},
         };
         //print out array contents using a nested for-each loop
-        for (int i = 0; i < cars.length; i++) {
-            for (String y : cars[i]){
+        for (String[] countries : cars) {
+            for (String y : countries){
                 System.out.print(y + " - ");
             }
             System.out.println();

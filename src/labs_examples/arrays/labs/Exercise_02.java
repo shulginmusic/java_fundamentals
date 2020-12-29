@@ -28,8 +28,18 @@ public class Exercise_02 {
         return num;
     }
     public static void printIndex(int [] numArr) {
-        int index = getNum(numArr);
-        System.out.println("The number at index " + index +
-                " is " + numArr[index] + "!");
+        int num = getNum(numArr);
+        int index = getIndex(numArr, num);
+        System.out.println("The number " + num +
+                " is at index " + index + "!");
+    }
+
+    public static int getIndex(int[] nums, int num){
+        for (int i = 0; i < nums.length; i++){
+            if (nums[i] == num){
+                return i;
+            }
+        }
+        return -1; //invalid index, not found
     }
 }

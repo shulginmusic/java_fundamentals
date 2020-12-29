@@ -39,8 +39,7 @@ public class Exercise_01 {
         return sum;
     }
 
-    public static double getAverage(int [] intArray) {
-        double sum = getSum(intArray);
+    public static double getAverage(int [] intArray, double sum) {
         //Average is sum / number of values in set
         double average = sum / intArray.length;
         return average;
@@ -48,7 +47,7 @@ public class Exercise_01 {
 
     public static void printSumAndAverage(int [] intArray) {
         double sum = getSum(intArray);
-        double average = getAverage(intArray);
+        double average = getAverage(intArray, sum);
         System.out.println("The sum of the numbers is " + sum);
         System.out.println("The average is " + average);
     }

@@ -30,9 +30,9 @@ public class Exercise_03 {
             }
         }
 
-        for (int i = 0; i < multiplesOfThree.length; i++){
-            for (int y : multiplesOfThree[i]){
-                System.out.print(y + " ");
+        for (int[] numbers : multiplesOfThree){
+            for (int num : numbers){
+                System.out.print(num + " ");
             }
             System.out.println();//print a new line for each new row after first
         }
