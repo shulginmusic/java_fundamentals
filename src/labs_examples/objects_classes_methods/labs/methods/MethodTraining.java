@@ -58,6 +58,8 @@ public class MethodTraining {
         int[] moreNums = {1, 5, 10, 15, 20};
         System.out.println(Arrays.toString(reverseIntArr(moreNums)));
 
+        numberOfConsonants("TEST!!!");
+
 
 
 
@@ -90,19 +92,29 @@ public class MethodTraining {
     //4) Write a method to count all consonants (the opposite of vowels) in a String
 
     public static void numberOfConsonants(String s) {
-        char[] consonants = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w',
-        'x', 'y', 'z'};//y is usually a consonant
-        String lowerS = s.toLowerCase(Locale.ROOT);
-        System.out.println(lowerS);
-        int consCount = 0;
-        for (char c : consonants) {
-            for (int i = 0; i < lowerS.length(); i++) {
-                if (c == lowerS.charAt(i)) {
-                    consCount++;
+        int count = 0;
+        String vowels = "aeiou ";
+        for (int i = 0; i < s.length(); i++) {
+            String c = String.valueOf(s.charAt(i)).toLowerCase(Locale.ROOT);
+            if (Character.isLetter(s.charAt(i))) {
+                if (!vowels.contains(c)) {
+                    count++;
                 }
             }
         }
-        System.out.println("Number of consonants in " + s + ": " + consCount);
+//        char[] consonants = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w',
+//        'x', 'y', 'z'};//y is usually a consonant
+//        String lowerS = s.toLowerCase(Locale.ROOT);
+//        System.out.println(lowerS);
+//        int consCount = 0;
+//        for (char c : consonants) {
+//            for (int i = 0; i < lowerS.length(); i++) {
+//                if (c == lowerS.charAt(i)) {
+//                    consCount++;
+//                }
+//            }
+//        }
+        System.out.println("Number of consonants in " + s + ": " + count);
     }
 
     //    5) Write a method that will determine whether or not a number is prime

@@ -133,7 +133,7 @@ public class MySQLAccess {
             c.setName(resultSet.getString("name"));
             c.setUnits(resultSet.getInt("units"));
 
-            retList.add(c);
+//            retList.add(c); for some reason this line raises an error
         }
 
         return retList;

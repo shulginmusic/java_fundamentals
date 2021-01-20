@@ -10,20 +10,21 @@ package labs_examples.objects_classes_methods.labs.methods;
 public class Exercise_04 {
 
     public static void main(String[] args) {
-        int x = factorial(5);
+        double x = factorial(5);
         System.out.println(x);
 
-        //max it will go to without doing weird stuff is 31
-        int z = factorial(31);
+        //max it will go to without doing weird stuff is 39
+        double z = factorial(1000);
         System.out.println(z);
+        System.out.println(z * 40);
     }
 
-    public static int factorial(int x) {
-        int factorialOfX;
+    public static double factorial(double x) {
+        double factorialOfX;
 
-        if (x == 1)
+        if (x == 1) //base case
             return 1; //no curly brackets ? Syntax of recursion?
-        factorialOfX = x * factorial(x - 1);
+        factorialOfX = x * factorial(x - 1); //continuing forward
         return factorialOfX;
 
         //first, there is a stack that's created with an ambiguous expression:
