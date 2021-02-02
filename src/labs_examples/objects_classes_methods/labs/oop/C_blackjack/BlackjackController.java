@@ -1,5 +1,6 @@
 package labs_examples.objects_classes_methods.labs.oop.C_blackjack;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BlackjackController {
@@ -22,38 +23,36 @@ public class BlackjackController {
         Deck newDeck = new Deck();
         newDeck.populateDeck();
         boolean quitGame = false;
-        boolean notEnoughMoney = false;
-        int bet;
+
         do {
             //Ask how much the player would like to bet
-            System.out.print(humanPlayer.name + ", you currently have " + humanPlayer.potValue + " dollars.");
-            System.out.print("\nHow much would you like to bet? (5/10/20/50/100) ");
-            bet = newScanner.nextInt();
-            //TODO how to write functionality if not enough money for chosen bet
-            switch (bet) {
-                case 5:
-                    humanPlayer.betFive();
-                    computerPlayer.betFive();
-                    break;
-                case 10:
-                    humanPlayer.betTen();
-                    computerPlayer.betTen();
-                    break;
-                case 20:
-                    humanPlayer.betTwenty();
-                    computerPlayer.betTwenty();
-                    break;
-                case 50:
-                    humanPlayer.betFifty();
-                    computerPlayer.betFifty();
-                    break;
-                case 100:
-                    humanPlayer.betHundred();
-                    computerPlayer.betHundred();
-                    break;
-                default://TODO this needs work, try a throws exception + why does it keep going without quitting the loop?!
-                    System.out.println("Input not allowed, sorry");
-            }
+            int bet = 0;
+            do {
+                if (humanPlayer.getPotValue() < bet) {
+                    System.out.println("You don't have enough money to bet this amount");
+                }
+                if (computerPlayer.getPotValue() < bet) {
+                    System.out.println("The computer doesn't have enough money to bet this amount");
+                }
+                System.out.print(humanPlayer.name + ", you currently have " + humanPlayer.potValue + " dollars.");
+                System.out.print("\nHow much would you like to bet? (5/10/20/50/100) ");
+                boolean invalidInput;
+                do {
+                    invalidInput = false;
+                    try {
+                        bet = newScanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        invalidInput = true;
+                        System.out.println("Invalid input, please try again...");
+                        newScanner.nextLine();
+                    }
+                } while (invalidInput);
+
+
+            } while((humanPlayer.getPotValue() < bet) || (computerPlayer.getPotValue() < bet) || !checkBet(bet));
+
+            humanPlayer.betMoney(bet);
+            computerPlayer.betMoney(bet);
 
             //Deal each player two cards
             for (int i = 0; i < 2; i++) {
@@ -119,6 +118,7 @@ public class BlackjackController {
             System.out.print("Would you like to play again? (y/n) ");
             String playAgain = newScanner.next();
             if (playAgain.equals("n")) {
+                System.out.println("Goodbye!");
                 quitGame = true;
             }
             //Empty players' hands
@@ -135,7 +135,6 @@ public class BlackjackController {
         boolean humanWinner = false;
         boolean computerWinner = false;
         boolean draw = false;
-//        boolean bothBusted = false;
         if (player.hand.getHandScore() == 21) {
             System.out.println("You have won!");
             humanWinner = true;
@@ -158,7 +157,7 @@ public class BlackjackController {
             }
         } else if ((player.hand.getHandScore() > 21) && (computerPlayer.hand.getHandScore() > 21)) {
             System.out.println("Both have busted");
-//            bothBusted = true;
+            draw = true;
         } else if ((player.hand.getHandScore() > 21) && (computerPlayer.hand.getHandScore() <= 21)) {
             System.out.println("The computer has won!");
             computerWinner = true;
@@ -184,12 +183,10 @@ public class BlackjackController {
         }
     }
 
+    public static boolean checkBet(int bet) {
+        return ((bet == 5) || (bet == 10) || (bet == 20) || (bet == 50) || (bet == 100));
+    }
 }
-
-//TODO work on bet functionality, something doesn't add up, also: the computer might have less money than you and won't
-//be able to match bet
-
-
 
 
 
