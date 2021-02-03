@@ -16,7 +16,7 @@ public class MathController {
         int c = CustomMath.multiply(a, b);
         double z = CustomMath.multiply(x, y);
 
-        int d = CustomMath.divide(4, 2);
+//        int d = CustomMath.divide(4, 2);
 
         System.out.println(x);
         System.out.println(z);
