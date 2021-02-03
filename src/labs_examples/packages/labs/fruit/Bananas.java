@@ -15,6 +15,5 @@ public class Bananas {
 
     public boolean isHealthy() {
         return isHealthy;
-
     }
 }
