@@ -13,8 +13,12 @@ public class Exercise_10 {
             if ((i % 5) != 0){
                 continue;
             }
-            System.out.println(i);
+            printValue(i);
         }
+    }
+
+    public static void printValue(int i) {
+        System.out.println(i);
     }
 }
 

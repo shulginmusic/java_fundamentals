@@ -23,7 +23,7 @@ class ShowFile {
         FileInputStream fin;
 
         try {
-            fin = new FileInputStream(filePath);
+            fin = new FileInputStream("/Users/dmfan113/Documents/The Picture of Dorian Gray.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return;

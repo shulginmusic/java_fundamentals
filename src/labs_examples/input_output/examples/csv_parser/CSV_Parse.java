@@ -23,7 +23,7 @@ public class CSV_Parse {
 
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                students.add(mapValuesToStudentObject(values));
+//                students.add(mapValuesToStudentObject(values));
             }
 
         } catch (FileNotFoundException e) {
