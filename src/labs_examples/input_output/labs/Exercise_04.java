@@ -2,7 +2,6 @@ package labs_examples.input_output.labs;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -31,7 +30,7 @@ public class Exercise_04 {
 
             while ((line = reader.readLine()) != null) {
                 values = line.split(",");
-                cities.add(mapValuestoCityObject(values));
+                cities.add(mapValuesToCityObject(values));
             }
         } catch (IOException exc) {
             System.out.println(exc.getLocalizedMessage());
@@ -60,7 +59,7 @@ public class Exercise_04 {
         return line;
     }
 
-    private static City mapValuestoCityObject(String[] values) {
+    private static City mapValuesToCityObject(String[] values) {
         City city = new City();
 
         city.setCityName(values[0]);
