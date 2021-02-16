@@ -3,8 +3,6 @@ package labs_examples.input_output.labs;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 //A Simple Java program to find out how many times a word appears in a certain text file
 public class WordCounter {
