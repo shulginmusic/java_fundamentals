@@ -3,6 +3,7 @@ package labs_examples.input_output.labs;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 //A Simple Java program to find out how many times a word appears in a certain text file
 public class WordCounter {
@@ -19,15 +20,20 @@ public class WordCounter {
         //Declare the wordCount variable
         int wordCount = 0;
         try {
-            //Declare the string array to hold the words
-            //Read the text in using the Files utility class, then split the string into the array utilizing a regex
+            //Declare the string list to hold the lines
+            //Read the lines in using the Files utility class, then split the lines into words utilizing a regex
             //So it will be words only
-            String [] words = new String(Files.readAllBytes(Paths.get(path))).split("\\W+");
-            //Check if a word appears and if so, how many times
-            for (String word : words) {
-                //Ignore the case
-                if (word.equalsIgnoreCase(userWord)) {
-                    wordCount++;
+            List<String> lines = Files.readAllLines(Paths.get(path));
+
+            for (String line : lines) {
+                String[] words = line.split("\\W+");
+
+                //Check if a word appears and if so, how many times
+                for (String word : words) {
+                    //Ignore the case
+                    if (word.equalsIgnoreCase(userWord)) {
+                        wordCount++;
+                    }
                 }
             }
         } catch (IOException exc) {
