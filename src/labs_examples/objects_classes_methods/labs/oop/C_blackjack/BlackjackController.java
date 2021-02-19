@@ -55,8 +55,6 @@ public class BlackjackController {
                         newScanner.nextLine();
                     }
                 } while (invalidInput);
-
-
             } while((humanPlayer.getPotValue() < bet) || (computerPlayer.getPotValue() < bet) || !checkBet(bet));
 
             humanPlayer.betMoney(bet);

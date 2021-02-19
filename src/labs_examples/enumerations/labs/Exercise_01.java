@@ -7,4 +7,3 @@ package labs_examples.enumerations.labs;
  *      2) Create a parameterized enumeration that passes one or more values to it's constructor. Demonstrate the use
  *      of this enum from a seperate class.
  */
-
