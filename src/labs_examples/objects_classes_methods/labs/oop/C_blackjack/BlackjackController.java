@@ -4,11 +4,18 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BlackjackController {
+
+    private static int gamesPlayed = 0;
+    private static int gamesWonByHuman = 0;
+    private static int gamesWonByComputer = 0;
+    private static int draws = 0;
+
     public static void main(String[] args) {
         playBlackJack();
     }
 
     public static void playBlackJack() {
+        //Create the MoneyJar object
         MoneyJar moneyJar = new MoneyJar();
         //Create a computer and a human player
         Scanner newScanner = new Scanner(System.in);
@@ -28,6 +35,7 @@ public class BlackjackController {
             //Ask how much the player would like to bet
             int bet = 0;
             do {
+                gameStatsStatement();
                 if (humanPlayer.getPotValue() < bet) {
                     System.out.println("You don't have enough money to bet this amount");
                 }
@@ -106,15 +114,20 @@ public class BlackjackController {
             System.out.println("The computer's final hand value is " + computerPlayer.hand.getHandScore());
             //determine who wins and distribute bets
             determineWinner(moneyJar, humanPlayer, computerPlayer);
+
             //Let the players know how much money each now has
             System.out.println(humanPlayer.name + ", you have " + humanPlayer.potValue + " dollars.");
             System.out.println("The computer has " + computerPlayer.potValue + " dollars.");
+
             //Quit if one is out of money
             if (humanPlayer.getPotValue() <= 0 || computerPlayer.getPotValue() <= 0) {
                 System.out.println("\nGAME OVER DUE TO LACK OF FUNDS");
+                gamesPlayed++;
                 break;
             }
             //Ask if they'd like to play again
+            gamesPlayed++;
+            gameStatsStatement();
             System.out.print("Would you like to play again? (y/n) ");
             String playAgain = newScanner.next();
             if (playAgain.equals("n")) {
@@ -175,16 +188,26 @@ public class BlackjackController {
                                       Player computerPlayer) {
         if (humanWinner) {
             humanPlayer.potValue += moneyJar.totalBets;
+            gamesWonByHuman++;
         } else if (draw) {
             humanPlayer.potValue += moneyJar.totalBets / 2;
             computerPlayer.potValue += moneyJar.totalBets / 2;
+            draws++;
         } else if (computerWinner) {
             computerPlayer.potValue += moneyJar.totalBets;
+            gamesWonByComputer++;
         }
     }
 
     public static boolean checkBet(int bet) {
         return ((bet == 5) || (bet == 10) || (bet == 20) || (bet == 50) || (bet == 100));
+    }
+
+    public static void gameStatsStatement() {
+        System.out.println("Games played: " + gamesPlayed);
+        System.out.println("Games won: " + gamesWonByHuman);
+        System.out.println("Games lost: " + gamesWonByComputer);
+        System.out.println("Draws: " + draws);
     }
 }
 
