@@ -14,8 +14,8 @@ public class Exercise_06 {
         //Declare the object to synchronize on
         PrintEvenOdd printEvenOrOdd = new PrintEvenOdd(1, 100);
         //Declare the threads
-        Thread even = new Thread(new myThreadClass(printEvenOrOdd, true), "Even Thread");
-        Thread odd = new Thread(new myThreadClass(printEvenOrOdd, false), "Odd Thread");
+        Thread even = new Thread(new MyRunnableClass(printEvenOrOdd, true), "Even Thread");
+        Thread odd = new Thread(new MyRunnableClass(printEvenOrOdd, false), "Odd Thread");
         //Start the threads
         even.start();
         odd.start();
@@ -24,12 +24,12 @@ public class Exercise_06 {
 }
 
 //Runnable class for the two threads
-class myThreadClass implements Runnable {
+class MyRunnableClass implements Runnable {
     //Pass the object to synchronize on
     PrintEvenOdd printEvenOrOdd;
     boolean isEven;
 
-    public myThreadClass(PrintEvenOdd printEvenOrOdd, boolean isEven) {
+    public MyRunnableClass(PrintEvenOdd printEvenOrOdd, boolean isEven) {
         this.printEvenOrOdd = printEvenOrOdd;
         this.isEven = isEven;
     }
