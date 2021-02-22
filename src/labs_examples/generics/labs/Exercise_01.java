@@ -8,3 +8,29 @@ package labs_examples.generics.labs;
  *          dynamic usage.
  */
 
+public class Exercise_01 {
+    public static void main(String[] args) {
+        MyClass<String> language = new MyClass<>();
+        language.setT("Russian");
+        System.out.println(language.getT());
+
+        MyClass<Boolean> male = new MyClass<>();
+        male.setT(true);
+        System.out.println(male.getT());
+
+    }
+}
+
+class MyClass<T> {
+   private T t;
+
+    public T getT() {
+        return t;
+    }
+
+    public void setT(T t) {
+        this.t = t;
+    }
+
+
+}
