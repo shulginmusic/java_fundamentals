@@ -28,6 +28,7 @@ public class WordCounter {
             for (String line : lines) {
                 String[] words = line.split("\\W+");
 
+
                 //Check if a word appears and if so, how many times
                 for (String word : words) {
                     //Ignore the case
