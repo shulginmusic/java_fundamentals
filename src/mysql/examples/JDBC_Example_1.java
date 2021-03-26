@@ -18,7 +18,7 @@ public class JDBC_Example_1 {
             // Setup the connection with the DB
             connection = DriverManager
                     .getConnection("jdbc:mysql://localhost/college?"
-                            + "user=ryan&password=CodingNomadsFoEva!&useSSL=false");
+                            + "user=root&password=INSERTPASSWORDHERE");
 
             // Statements allow to issue SQL queries to the database
             statement = connection.createStatement();

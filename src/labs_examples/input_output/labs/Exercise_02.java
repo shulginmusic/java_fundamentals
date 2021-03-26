@@ -1,9 +1,7 @@
 package labs_examples.input_output.labs;
 
-import com.sun.tools.hat.internal.parser.Reader;
 
 import java.io.*;
-import java.util.Scanner;
 
 /**
  * Input/Output Exercise 2: File encryption
