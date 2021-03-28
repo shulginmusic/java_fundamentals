@@ -3,18 +3,137 @@
 *  MySQL Exercise 3:
 *
 *   Now that you have your air travel database all set up and populated, please demonstrate how to:
+
+        #I used the workbench for some of these as a convenience (mainly when inserting/updating data)
+        #I changed some minor details in the questions to fit the database that I created
+
+
 *
 *       1.) Query all flights on a specific day
+
+            SELECT * FROM flights WHERE date = "2021-03-04";
+
 *       2.) Query all flights between two specific cities on a specific day
-*       3.) Query all passengers on a specific flight between two specific cities today
+
+            mysql> SELECT *
+                -> FROM flights
+                -> WHERE departure_city_id = "3" AND date = "2021-04-24"
+                -> OR
+                -> departure_city_id = "4" AND date = "2021-04-24";
+
+*       3.) Query all passengers on a specific flight between two specific cities on a specific day
+
+            SELECT p.first_name, p.last_name
+            FROM passengers p
+            JOIN tickets t ON
+            p.id = t.passenger_id
+            JOIN flights f
+            ON t.flight_id = f.id
+            WHERE f.id = "1";
+
 *       4.) Query the flight information for a specific passenger on a specific flight
-*       5.) Query the passenger information for a specific user on a specific flight yesterday
+
+            SELECT first_name, last_name, c1.city_name AS Departure, c2.city_name AS Destination, flights.date
+            FROM passengers
+            JOIN tickets
+            ON passengers.id = tickets.passenger_id
+            JOIN flights
+            ON tickets.flight_id = flights.id
+            JOIN cities c1
+            ON flights.departure_city_id = c1.id
+            JOIN cities c2
+            ON flights.destination_city_id = c2.id
+            WHERE passengers.first_name = "Olivia";
+
+
+*       5.) Query the passenger information for a specific user on a specific flight yesterday (I did on a specific day)
+
+
+
+            SELECT first_name, last_name, c1.city_name AS Departure, c2.city_name AS Destination, flights.date
+            FROM passengers
+            JOIN tickets
+            ON passengers.id = tickets.passenger_id
+            JOIN flights
+            ON tickets.flight_id = flights.id
+            JOIN cities c1
+            ON flights.departure_city_id = c1.id
+            JOIN cities c2
+            ON flights.destination_city_id = c2.id
+            WHERE passengers.first_name = "Papa" AND flights.date = "2021-03-20";
+
+
 *       6.) Query the number of flights between two specific cities this week, month, and year
+
+            SELECT *
+            FROM flights
+            WHERE
+            departure_city_id = "3" AND DATE BETWEEN "2021-04-01" AND "2021-05-01"
+            OR
+            departure_city_id = "4" AND DATE BETWEEN "2021-04-01" AND "2021-05-01";
+
+
 *       7.) Query the number of passengers that travelled between two specific cities today, this week, month and year
+
+            SELECT count(p.id) AS total_passengers
+            FROM passengers p
+            JOIN tickets t ON
+            p.id = t.passenger_id
+            JOIN flights f
+            ON t.flight_id = f.id
+            WHERE f.id = "2";
+
+
 *       8.) Insert records for new flights between airports
+
+            INSERT INTO `efim_air`.`flights` (`departure_city_id`, `destination_city_id`, `aircraft_id`, `gallons_required`, `pilot_id`, `date`) VALUES ('3', '1', '2', '250', '3', '2021-05-05');
+
 *       9.) Insert records for new tickets and passengers on specific flights
+
+            INSERT INTO `efim_air`.`tickets` (`passenger_id`, `flight_id`) VALUES ('1', '9');
+            INSERT INTO `efim_air`.`tickets` (`passenger_id`, `flight_id`) VALUES ('3', '9');
+            INSERT INTO `efim_air`.`tickets` (`passenger_id`, `flight_id`) VALUES ('5', '9');
+            INSERT INTO `efim_air`.`tickets` (`passenger_id`, `flight_id`) VALUES ('6', '9');
+
+
 *       10.) Update meal preference (or something similar) for a specific passenger on a specific flight
+
+            UPDATE `efim_air`.`passengers` SET `meal_preference` = 'Keto' WHERE (`id` = '8');
+
+
 *       Bonus: Have some fun - get creative - what else can you do? Flex those SQL muscles and show us what
 *           you've got! :)
+
+            #Total Fuel required for all flights
+
+            SELECT sum(f.gallons_required) AS total_fuel FROM flights f;
+            +------------+
+            | total_fuel |
+            +------------+
+            |       2694 |
+            +------------+
+
+            #Average Fuel required
+
+            SELECT avg(f.gallons_required) AS total_fuel FROM flights f;
+            +------------+
+            | total_fuel |
+            +------------+
+            |   299.3333 |
+            +------------+
+
+            #Pilot average hours
+
+            SELECT avg(p.hours) AS average_hours FROM pilots p;
+            +---------------+
+            | average_hours |
+            +---------------+
+            |     2783.0000 |
+            +---------------+
+
+
+
+
+
 *
 */
