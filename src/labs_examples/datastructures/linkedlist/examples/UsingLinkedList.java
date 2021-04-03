@@ -17,6 +17,8 @@ public class UsingLinkedList {
         System.out.println(myLinkedList.get(1));
         System.out.println(myLinkedList.get(2));
         System.out.println(myLinkedList.get(3));
+
+        myLinkedList.remove(3);
     }
 
 }
