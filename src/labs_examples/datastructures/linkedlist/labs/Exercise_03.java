@@ -7,9 +7,9 @@ package labs_examples.datastructures.linkedlist.labs;
  */
 public class Exercise_03 {
     public static void main(String[] args) {
-        DoublyLinkedList<String> names = new DoublyLinkedList<>();
-        names.addLast("Shulgin");
-        names.addLast("Efim");
+//        DoublyLinkedList<String> names = new DoublyLinkedList<>();
+//        names.addLast("Shulgin");
+//        names.addLast("Efim");
 
     }
 }
