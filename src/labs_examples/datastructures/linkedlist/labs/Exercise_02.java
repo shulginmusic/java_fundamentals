@@ -17,27 +17,27 @@ public class Exercise_02 {
         //Constructing the list with two values
         MyLinkedList<Integer> numsList = new MyLinkedList<Integer>();
 //
-//        numsList.add(345);
-//        numsList.add(11);
-//        numsList.add(432);
-//        numsList.add(222);
-//        numsList.add(231);
-//
-//        numsList.remove(345); //Test removing first element
-//        numsList.remove(432); //Test removing from the middle
-//        numsList.remove(231); //Test removing last element
-//        numsList.remove(11111); //Test with no such value in list
-//
-//        numsList.add(1, true); //Test adding to the front of a not-empty list
-//        numsList.add(787); //Test adding to the end of the list
-//
-//        System.out.println(numsList.getFirst());//Test getting first
-//        System.out.println(numsList.get(432));//Test getting by value
-//        System.out.println(numsList.get(1321231)); //Test trying to get an unexisting node
-//        System.out.println(numsList.get(11)); //get last value from list
-//
-//        numsList.clear();//Test clear() method
-//        System.out.println(numsList.getSize());
+        numsList.add(345);
+        numsList.add(11);
+        numsList.add(432);
+        numsList.add(222);
+        numsList.add(231);
+
+        numsList.remove(345); //Test removing first element
+        numsList.remove(432); //Test removing from the middle
+        numsList.remove(231); //Test removing last element
+        numsList.remove(11111); //Test with no such value in list
+
+        numsList.add(1, true); //Test adding to the front of a not-empty list
+        numsList.add(787); //Test adding to the end of the list
+
+        System.out.println(numsList.getFirst());//Test getting first
+        System.out.println(numsList.get(432));//Test getting by value
+        System.out.println(numsList.get(1321231)); //Test trying to get an unexisting node
+        System.out.println(numsList.get(11)); //get last value from list
+
+        numsList.clear();//Test clear() method
+        System.out.println(numsList.getSize());
 
         numsList.add(3);
         numsList.remove(3);
