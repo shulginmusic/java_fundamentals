@@ -27,8 +27,6 @@ public class MyQueue<T> {
             return null;
         } else {
             T popValue = array[0]; //store value
-//            array[currentEmptyIndex - 1] = null; // empty underlying array at last index used
-            T iterator = array[1];
             for (int i = 0; i < size(); i++) {
                 array[i] = array[i + 1];
             }
