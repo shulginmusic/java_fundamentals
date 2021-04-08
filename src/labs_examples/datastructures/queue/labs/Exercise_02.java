@@ -1,5 +1,7 @@
 package labs_examples.datastructures.queue.labs;
 
+import labs_examples.datastructures.stack.labs.StackEmptyException;
+
 /**
  *      Queues - Exercise_02
  *
@@ -16,3 +18,59 @@ package labs_examples.datastructures.queue.labs;
  *      6) contain a method to print out the data of all elements in the Queue
  *
  */
+
+public class Exercise_02 {
+    public static void main(String[] args) throws QueueEmptyException {
+        MyQueue<Integer> nums = new MyQueue<>(); //Declaring a MyQueue object
+        nums.enqueue(3);//adding some number to nums
+        nums.enqueue(23);
+        nums.enqueue(45);
+        nums.enqueue(67);
+        nums.printQueueData();//This method prints out queue data, along with confirming the resizing of the underlying array
+
+        for (int i = 0; i < 500; i++) {
+            nums.enqueue(generateRandom()); //adding more random numbers to queue
+        }
+
+        nums.printQueueData(); //see how the array size changed -- every time it's 3/4 full it doubles its size
+        System.out.println("Queue size: " + nums.size()); //size method
+        nums.clear(); //Clear the queue
+        //look at how the underlying array size keeps changing as the program realized it doesn't need that much space...
+        nums.enqueue(1); //First in
+        nums.printQueueData();
+        nums.enqueue(2);
+        nums.printQueueData();
+        nums.enqueue(3); //Last in
+        nums.printQueueData();
+
+        //Or you can just compress at once
+        nums.compress();
+        nums.printQueueData();
+        System.out.println("-----Peeking-----");
+        //Peek methods
+        System.out.println(nums.peekFirst()); //First out
+        System.out.println(nums.peekLast()); //Last out
+
+        System.out.println("-----Dequeueing-----");
+        //Checking if the dequeueing works properly
+        System.out.println(nums.dequeue());
+        System.out.println(nums.dequeue());
+        nums.printQueueData();
+
+        nums.clear(); //clear the queue
+
+        System.out.println(nums.dequeue()); //Throw custom exception when dequeueing from empty queue
+
+    }
+
+
+    //A method to generate random numbers
+    private static Integer generateRandom() {
+        int min = 0;
+        int max = 1423;
+        int range = max - min + 1;
+
+        return (int) (Math.random() * range) + min;
+
+    }
+}
