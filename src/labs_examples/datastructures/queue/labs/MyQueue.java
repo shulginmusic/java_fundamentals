@@ -10,15 +10,22 @@ public class MyQueue<T> {
 
     private int currentEmptyIndex; //***index variable, VERY important!***
 
+    private int oldestElement;
+    private int newestElement;
+    private int numElements;
+
     public MyQueue() {
         array = (T[]) new Object[INITIAL_SIZE];//declare the array with the INITIAL_SIZE length
-        this.currentEmptyIndex = 0;//start at 0
+        currentEmptyIndex = 0;//start at 0
+        oldestElement = 0;
+        newestElement = 0;
     }
 
     public void enqueue(T value) {
         checkToResize();
-        array[currentEmptyIndex] = value; //set the value at currentEmptyIndex
-        currentEmptyIndex++; //Increment currentEmptyIndex
+        array[newestElement] = value; //set the value at currentEmptyIndex
+        newestElement++; //Increment newest element
+        numElements++; //Increment num of elements
     }
 
     public T dequeue() throws QueueEmptyException {
@@ -26,11 +33,10 @@ public class MyQueue<T> {
         if ((checkIfEmpty())) { //if queue is empty
             return null;
         } else {
-            T popValue = array[0]; //store value
-            for (int i = 0; i < size(); i++) {
-                array[i] = array[i + 1];
-            }
-            currentEmptyIndex--; //decrement the currentEmptyIndex
+            T popValue = array[oldestElement]; //store value
+            array[oldestElement] = null;
+            oldestElement++;
+            numElements--;
             checkToResize(); //start downsizing if necessary
             return popValue; //return the stored value that's now been deleted from queue
         }
@@ -40,7 +46,7 @@ public class MyQueue<T> {
         if ((checkIfEmpty())) { //if queue is empty
             return null;
         } else {
-            return array[0];
+            return array[oldestElement];
         }
     }
 
@@ -48,12 +54,12 @@ public class MyQueue<T> {
         if ((checkIfEmpty())) { //if queue is empty
             return null;
         } else {
-            return array[currentEmptyIndex - 1];
+            return array[newestElement - 1];
         }
     }
 
     public int size() {
-        return currentEmptyIndex; //let's say currentEmptyIndex is 5 ... so there are five elements in the queue, since
+        return numElements; //let's say currentEmptyIndex is 5 ... so there are five elements in the queue, since
         //we start at 0: 0, 1, 2, 3, 4
     }
 
@@ -63,11 +69,15 @@ public class MyQueue<T> {
         } else {
             System.out.println("Current underlying array length: " + array.length);
             System.out.print("queue data: {");
+            int count = 0;
+            //Print out every element in the underlying array, neatly
             for (T element : array) {
-                if (element != null) {
-                    System.out.print(element + ", "); //Print out every element in the underlying array, neatly
+                if (count == 0) {
+                    System.out.print(element);
+                } else {
+                    System.out.print(", " + element);
                 }
-
+                count++;
             }
             System.out.print("}\n");
         }
@@ -80,15 +90,30 @@ public class MyQueue<T> {
 
     //Clear out the queue
     public void clear() {
-        for (int i = 0; i < array.length; i++) {
-            array[i] = null; //set every element in the array to null
-        }
-        currentEmptyIndex = 0;
-        checkToResize(); //start downsizing
+        array = (T[]) new Object[INITIAL_SIZE];//declare the array with the INITIAL_SIZE length
+        newestElement = 0;
+        oldestElement = 0;
+        numElements = 0;
     }
+    //- - - 3 2 6 - - - -
+
 
     //________PRIVATE INTERNAL METHODS________
+
+    private void shuffle() {
+        if (oldestElement > array.length * 0.3) {
+            int count = 0;
+            for (int i = oldestElement; i < newestElement; i++) {
+                array[count] = array[i];
+                array[i] = null;
+                count++;
+            }
+        }
+    }
+
+
     private void checkToResize() {
+        shuffle();
         //Find out the current size to array length ratio
         double sizeToLengthRatio = (double) size() / array.length;
         //if greater than .75%, or 3/4, double the queue size
@@ -97,7 +122,7 @@ public class MyQueue<T> {
             int newArrayLength = array.length * 2;
             array = Arrays.copyOf(array, newArrayLength); //set array to a copy of itself with a new size
         }
-        if ((sizeToLengthRatio) <= 0.25) {
+        if ((sizeToLengthRatio) <= 0.25 && array.length > 10) {
             //decrease underlying array length by half
             int newArrayLength = array.length / 2;
             array = Arrays.copyOf(array, newArrayLength); //set array to a copy of itself with a new size
@@ -106,7 +131,7 @@ public class MyQueue<T> {
 
     //Check if empty, throw custom exception
     private boolean checkIfEmpty() throws QueueEmptyException{
-        if (currentEmptyIndex == 0) { //if queue is empty
+        if (numElements == 0) { //if queue is empty
             throw new QueueEmptyException();
         }
         return false;

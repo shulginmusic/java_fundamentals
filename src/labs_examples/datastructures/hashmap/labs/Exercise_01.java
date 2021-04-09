@@ -1,5 +1,7 @@
 package labs_examples.datastructures.hashmap.labs;
 
+import java.util.HashMap;
+
 /**
  *  HashMaps Exercise_01
  *
@@ -21,3 +23,19 @@ package labs_examples.datastructures.hashmap.labs;
  *  clear()
  *
  */
+public class Exercise_01 {
+    public static void main(String[] args) {
+        HashMap<Integer, String> users = new HashMap<>();
+
+        //put
+        users.put(1, "efim1994");
+        users.put(2, "agniia_z");
+
+        //get
+        System.out.println(users.get(2));
+
+        //putAll
+
+
+    }
+}

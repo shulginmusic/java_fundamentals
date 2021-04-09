@@ -44,7 +44,7 @@ public class Exercise_02 {
         nums.printQueueData();
 
         //Or you can just compress at once
-        nums.compress();
+//        nums.compress();
         nums.printQueueData();
         System.out.println("-----Peeking-----");
         //Peek methods
@@ -57,9 +57,18 @@ public class Exercise_02 {
         System.out.println(nums.dequeue());
         nums.printQueueData();
 
-        nums.clear(); //clear the queue
+//        nums.clear(); //clear the queue
+//
+//        System.out.println(nums.dequeue()); //Throw custom exception when dequeueing from empty queue
 
-        System.out.println(nums.dequeue()); //Throw custom exception when dequeueing from empty queue
+        nums.enqueue(12);
+        nums.enqueue(23);
+        nums.enqueue(343);
+        nums.enqueue(11);
+        int element = nums.dequeue();
+        int elementTwo = nums.dequeue();
+
+        nums.printQueueData();
 
     }
 

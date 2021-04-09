@@ -95,7 +95,7 @@ public class MyStack<T> {
             int newArrayLength = array.length * 2;
             array = Arrays.copyOf(array, newArrayLength); //set array to a copy of itself with a new size
         }
-        if ((sizeToLengthRatio) <= 0.25) {
+        if ((sizeToLengthRatio) <= 0.25 && size() > 10) {
             //decrease underlying array length by half
             int newArrayLength = array.length / 2;
             array = Arrays.copyOf(array, newArrayLength); //set array to a copy of itself with a new size
