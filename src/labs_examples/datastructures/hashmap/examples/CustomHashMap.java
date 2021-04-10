@@ -92,7 +92,7 @@ public class CustomHashMap<K, V> {
                     // if it is, traverse to the next node
                     entry = entry.next;
                     // and call the put() method to add this element
-                    put((K) entry.getKey(), (V) entry.getValue());
+                    put((K) entry.getKey(), (V) entry.getValue()); //TODO I think this should go before line 93
                     // loop
                 }
             } catch (Exception e) {

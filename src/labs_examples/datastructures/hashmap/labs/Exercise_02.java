@@ -22,7 +22,22 @@ public class Exercise_02 {
     public static void main(String[] args) {
         CustomHashRewritten<String, String> names = new CustomHashRewritten<>();
         names.insert("Efim", "Shulgin");
-        names.insert("Efim", "Ognev");
+        names.insert("Donald", "Duck");
+        names.insert("Mickey", "Mouse");
+
+        System.out.println(names.retrieve("Efim"));
+        System.out.println(names.retrieve("Donald"));
+
+        names.delete("Mickey");
+        names.delete("Mickey");
+
+        names.insert("Efim", "Shulgin");
+        names.insert("Donald", "Duck");
+        names.insert("Mickey", "Mouse");
+        names.insert("Efim", "Shulgin");
+        names.insert("Donald", "Duck");
+        names.insert("Mickey", "Mouse");
+
 
     }
 }
