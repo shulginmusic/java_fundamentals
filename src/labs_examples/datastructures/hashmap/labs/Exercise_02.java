@@ -17,3 +17,13 @@ package labs_examples.datastructures.hashmap.labs;
  *      8) add at least one more method that you think could be useful to the HashMap
  *          review Java's built-in HashMap for inspiration
  */
+
+public class Exercise_02 {
+    public static void main(String[] args) {
+        CustomHashRewritten<String, String> names = new CustomHashRewritten<>();
+        names.insert("Efim", "Shulgin");
+        names.insert("Efim", "Ognev");
+
+    }
+}
+

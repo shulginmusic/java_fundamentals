@@ -1,7 +1,5 @@
 package labs_examples.datastructures.hashmap.examples;
 
-import labs_examples.datastructures.linkedlist.examples.CustomLinkedList;
-
 /**
  * Created by Kevin Graham - https://codingnomads.co
  */
