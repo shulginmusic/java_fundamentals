@@ -21,22 +21,43 @@ package labs_examples.datastructures.hashmap.labs;
 public class Exercise_02 {
     public static void main(String[] args) {
         CustomHashRewritten<String, String> names = new CustomHashRewritten<>();
+        //insert method
         names.insert("Efim", "Shulgin");
         names.insert("Donald", "Duck");
         names.insert("Mickey", "Mouse");
 
+        //retrieve method
         System.out.println(names.retrieve("Efim"));
         System.out.println(names.retrieve("Donald"));
 
+        //delete method
         names.delete("Mickey");
-        names.delete("Mickey");
+//        names.delete("Mickey"); //nothing to delete
+
+
+        //Inserting values so hashmap gets crowded and resized
 
         names.insert("Efim", "Shulgin");
-        names.insert("Donald", "Duck");
-        names.insert("Mickey", "Mouse");
         names.insert("Efim", "Shulgin");
+        names.insert("Efim", "Shulgin");
+
         names.insert("Donald", "Duck");
+        names.insert("Donald", "Duck");
+        names.insert("Donald", "Duck");
+
         names.insert("Mickey", "Mouse");
+        names.insert("Mickey", "Mouse");
+        names.insert("Mickey", "Mouse");
+
+        names.delete("Efim");
+
+        String name = names.retrieve("Mickey");
+        System.out.println(name); //Debug here to see new underlying array size
+
+        //Clearing
+        names.clear();
+
+
 
 
     }
