@@ -93,7 +93,6 @@ public class CustomHashRewritten<Key, Value> {
                 return null; //if it's not found
             }
         }
-        //Note: This method is faulty if keys are identical but the values are different. Perhaps think of a rewrite?
     }
 
     public void delete(Key key) {
@@ -109,9 +108,14 @@ public class CustomHashRewritten<Key, Value> {
         //Get the node at the index
         Node<Key, Value> node = array[nodeIndex];
 
-        //remove the element if this is the node we are looking for
-        if (node.getKey().equals(key)) {
+        //remove the element if this is the node we are looking for AND it's not a linked list
+        if (node.getKey().equals(key) && node.previous == null) {
             array[nodeIndex] = null;
+            size--;
+            return;
+        } else if (node.getKey().equals(key) && node.previous != null) {
+//            remove the element if this is the node we are looking for AND IT IS a linked list
+            array[nodeIndex] = node.previous;
             size--;
             return;
         }
@@ -128,7 +132,8 @@ public class CustomHashRewritten<Key, Value> {
             System.out.println("No such key-value pair to delete");
             return;
         } else { //if found
-            if (node.previous.previous != null) { //if there is a node.previous.previous i.e. if we are in the middle of the linked list
+            if (node.previous.previous != null) {
+                //if there is a node.previous.previous i.e. if we are in the middle of the linked list
                 node.previous = node.previous.previous;
                 size--;
                 return;
@@ -144,6 +149,36 @@ public class CustomHashRewritten<Key, Value> {
     public void clear() {
         array = new Node[10];
         size = 0;
+    }
+
+    //Method to print hashmmap info and nodes (entries)
+
+    public void printInfo() {
+        System.out.println("Hashmap size: " + size());
+        System.out.println("Current underlying array length: " + capacity());
+        System.out.println("Key - value pairs: ");
+
+        //print every node
+        for (Node pair : array) {
+            try {
+                //if a linked list:
+                //iterate over the list
+                Node iterator = pair;
+                if (iterator.previous != null) {
+                    System.out.print("Linked List: ");
+                    while (iterator.previous != null) {
+                        System.out.print(iterator.getKey() + " - " + iterator.getValue() + "; ");
+                        iterator = iterator.previous;
+                    }
+                } else { //if NOT a linked list
+                    System.out.print(pair.getKey() + " - " + pair.getValue()); //simply print the key - value pair
+                }
+                System.out.println();
+            } catch (NullPointerException exc) {
+                ;//do nothing here
+            }
+
+        }
     }
 
 
@@ -172,12 +207,11 @@ public class CustomHashRewritten<Key, Value> {
         double sizeToLengthRatio = (double) size() / array.length;
         //if greater than .75%, or 3/4, double the stack size
         if ((sizeToLengthRatio) > 0.5) { //resize the HashMap when the underlying array is more than half full
-
             //increase underlying array length X3
             increaseSize();
         }
         if ((sizeToLengthRatio) <= 0.25 && size() > 10) {
-//            decreaseSize;
+            decreaseSize();
         }
     }
 
@@ -188,29 +222,8 @@ public class CustomHashRewritten<Key, Value> {
 
         //Declare new underlying array that is 3x the size of the old one
         array = new Node[oldArray.length * 3];
-
-        //iterate over the old array
-//        for (int i = 0; i < oldArray.length; i++) {
-//            try {
-//                //Get node at the index of i
-//                Node<Key, Value> node = oldArray[i];
-//
-//                //insert the node into the new underlying array
-//                insert(node.key, node.value); //this is called from within and is done on the new array declared above
-//
-//                //check if the node is a linked list node
-//                if (node.previous != null) {
-//                    Node<Key, Value> iterator = node.previous;
-//                    while (iterator != null) {
-//                        //add the node to the underlying array
-//                        insert(iterator.getKey(), iterator.getValue());
-//                        //keep iterating
-//                        iterator = iterator.previous;
-//                    }
-//                }
-//            } catch (Exception e) {
-//                ; //nothing to be done here, this is for empty indexes
-//            }
+        //Reset size
+        size = 0;
 
         for (int i = 0; i < oldArray.length; i++) {
             if (oldArray[i] != null) {
@@ -241,6 +254,8 @@ public class CustomHashRewritten<Key, Value> {
 
         //Declare new underlying array that is half the size of the old one
         array = new Node[oldArray.length / 2];
+        //Reset size
+        size = 0;
 
         //iterate over the old array
         for (int i = 0; i < oldArray.length; i++) {
@@ -266,8 +281,6 @@ public class CustomHashRewritten<Key, Value> {
             }
         }
     }
-
-
 }
 
 

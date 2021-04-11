@@ -49,7 +49,11 @@ public class Exercise_02 {
         names.insert("Mickey", "Mouse");
         names.insert("Mickey", "Mouse");
 
+        names.printInfo();
+
         names.delete("Efim");
+        //don't mind the size here in the debugger - the hashmap is messed up on purpose to create more collisions,
+        // so entries have identical keys for collision simulation
 
         String name = names.retrieve("Mickey");
         System.out.println(name); //Debug here to see new underlying array size
