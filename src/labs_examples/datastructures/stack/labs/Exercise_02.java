@@ -45,9 +45,13 @@ public class Exercise_02 {
         //size after popping:
         System.out.println("Stack size after .pop(): " + colors.size());
 
+        //Search the stack for a value
+        System.out.print("Searching for value Red:");
+        System.out.println(" distance from top of the stack = " + colors.search("Red"));
+
         //Clear out the stack:
         colors.clear();
-        System.out.println(colors.size());
+        System.out.println("Stack size after clear(): " + colors.size());
 
 //        //Throw custom exception when trying to peek / pop empty stack
 //        System.out.println(colors.peekFirst());
