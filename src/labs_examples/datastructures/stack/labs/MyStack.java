@@ -34,6 +34,15 @@ public class MyStack<T> {
         }
     }
 
+    public int search(T val) {
+        for (int i = 0; i < array.length; i++) { //iterate over the array
+            if (array[i] == val) { //search for value
+                return i; //return distance from top of the stack
+            }
+        }
+        return -1; //if not found, return -1
+    }
+
     public T peekFirst() throws StackEmptyException{ //as in the first one to be out
         if ((checkIfEmpty())) { //if stack is empty
             return null;
