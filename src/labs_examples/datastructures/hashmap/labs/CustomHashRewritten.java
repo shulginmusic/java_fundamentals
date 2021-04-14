@@ -95,6 +95,20 @@ public class CustomHashRewritten<Key, Value> {
         }
     }
 
+    public void update(Key key, Value val) {
+        //if no such key exists
+        //First get the index for the key
+        int nodeIndex = getIndex(key);
+        if (array[nodeIndex] == null) {
+            System.out.println("Unable to update - No such key in hashmap");
+            return;
+        } else {
+            Node<Key, Value> node = getNode(key);
+            delete(key);
+            insert(key, val);
+        }
+    }
+
     public void delete(Key key) {
         //Make sure key exists
         if (retrieve(key) == null) {
@@ -283,6 +297,35 @@ public class CustomHashRewritten<Key, Value> {
 //            }
 //        }
 //    }
+
+    private Node getNode(Key key) {
+        //First get the index for the key
+        int nodeIndex = getIndex(key);
+
+        //if nothing is at the index of the key, return null
+        if (array[nodeIndex] == null) {
+            System.out.println("No such key - value in hashmap to retrieve");
+            return null;
+        }
+
+        //If something is at the index, get it or iterate over the linked list if there is one
+        Node<Key, Value> node = array[nodeIndex];
+        if (node.getKey().equals(key)) {
+            return node; //if the key is at this index
+        } else {
+            //iterate over the linked list
+            while (!node.getKey().equals(key) && node.previous != null) {
+                node = node.previous;
+            }
+            //We have now reached the end of the linked list and/or have found the key
+            if (node.getKey().equals(key)) {
+                return node; //if key is found
+            } else {
+                System.out.println("No such key - value in hashmap to retrieve");
+                return null; //if it's not found
+            }
+        }
+    }
 }
 
 

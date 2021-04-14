@@ -35,38 +35,38 @@ public class StackTesting {
         timeElapsed = finish - start;
         System.out.println("Milliseconds to add 100 elements: " + timeElapsed);
 
-//        //update 100 elements
-//        start = System.currentTimeMillis();
-//        for (Integer key : myHashMap.keySet()) {
-//            javaHashMap.replace(key, generateRandom(), generateRandom());
-//        }
-//        finish = System.currentTimeMillis();
-//        timeElapsed = finish - start;
-//        System.out.println("Milliseconds to update 100 elements: " + timeElapsed);
-//
-//        //search for 100 elements
-//        start = System.currentTimeMillis();
-//        Integer searchedVal = null;
+        //update 100 elements
+        start = System.currentTimeMillis();
+        for (int i = generateRandom(); i < generateRandom() + 100; i++) {
+            myHashMap.update(i, generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to update 100 elements: " + timeElapsed);
+
+        //search for 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myHashMap.retrieve(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to search 100 elements: " + timeElapsed);
+
+        //delete  100 elements
+        start = System.currentTimeMillis();
+        //This unfortunately throws ConcurrentModificationException... So we'll just clear here
 //        for (Integer key : javaHashMap.keySet()) {
-//            searchedVal = javaHashMap.get(key);
+//            javaHashMap.remove(key);
 //        }
-//        finish = System.currentTimeMillis();
-//        timeElapsed = finish - start;
-//        System.out.println("Milliseconds to search 100 elements: " + timeElapsed);
-//
-//        //delete  100 elements
-//        start = System.currentTimeMillis();
-//        //This unfortunately throws ConcurrentModificationException... So we'll just clear here
-////        for (Integer key : javaHashMap.keySet()) {
-////            javaHashMap.remove(key);
-////        }
 //        javaHashMap.clear();
-//        finish = System.currentTimeMillis();
-//        timeElapsed = finish - start;
-//        System.out.println("Milliseconds to clear: " + timeElapsed);
-//        System.out.println("-----------------------");
-//
-//
+        for (int i = 0; i < 100; i++) {
+            myHashMap.delete(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to delete 100 elements: " + timeElapsed);
+        System.out.println("-----------------------");
 
     }
 }

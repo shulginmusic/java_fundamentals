@@ -9,23 +9,23 @@ import labs_examples.datastructures.stack.labs.StackEmptyException;
 import java.util.*;
 
 /**
- *      HashMaps Exercise_03
- *
- *      Create a new class that does the following:
- *
- *      1) create a LinkedList
- *      2) create a Stack
- *      3) create a Queue
- *      4) create a HashMap
- *
- *      Then, add millisecond timers before and after each data structure above and print out
- *      how long it takes for each to complete EACH the following tasks, and the total time for
- *      each data structure:
- *
- *      1) add 100 elements
- *      2) update 100 elements
- *      3) search for 100 elements
- *      4) delete 100 elements
+ * HashMaps Exercise_03
+ * <p>
+ * Create a new class that does the following:
+ * <p>
+ * 1) create a LinkedList
+ * 2) create a Stack
+ * 3) create a Queue
+ * 4) create a HashMap
+ * <p>
+ * Then, add millisecond timers before and after each data structure above and print out
+ * how long it takes for each to complete EACH the following tasks, and the total time for
+ * each data structure:
+ * <p>
+ * 1) add 100 elements
+ * 2) update 100 elements
+ * 3) search for 100 elements
+ * 4) delete 100 elements
  */
 
 //for the timer, thanks to https://www.baeldung.com/java-measure-elapsed-time
@@ -369,12 +369,65 @@ public class Exercise_03 {
         System.out.println("Milliseconds to delete 100 elements: " + timeElapsed);
         System.out.println("-----------------------");
 
+        //Hashmap
 
+        //Hashmap
+        System.out.println("Custom Hashmap");
 
+        //add 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myHashMap.insert(generateRandom(), generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to add 100 elements: " + timeElapsed);
+
+        //update 100 elements
+        start = System.currentTimeMillis();
+        for (int i = generateRandom(); i < generateRandom() + 100; i++) {
+            myHashMap.update(i, generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to update 100 elements: " + timeElapsed);
+
+        //search for 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myHashMap.retrieve(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to search 100 elements: " + timeElapsed);
+
+        //delete  100 elements
+        start = System.currentTimeMillis();
+        myHashMap.clear();
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to clear 100 elements: " + timeElapsed);
+        System.out.println("-----------------------");
+
+        //There was an alternative to actually try and delete 100 different keys, but it keeps freezing in this class
+        //for some reason:
+
+//        //delete  100 elements
+//        start = System.currentTimeMillis();
+//        //This unfortunately throws ConcurrentModificationException... So we'll just clear here
+////        for (Integer key : javaHashMap.keySet()) {
+////            javaHashMap.remove(key);
+////        }
+////        javaHashMap.clear();
+//        for (int i = 0; i < 100; i++) {
+//            myHashMap.delete(generateRandom());
+//        }
+//        finish = System.currentTimeMillis();
+//        timeElapsed = finish - start;
+//        System.out.println("Milliseconds to delete 100 elements: " + timeElapsed);
+//        System.out.println("-----------------------");
 
     }
-
-
 
     //A method to generate random numbers
     private static Integer generateRandom() {
