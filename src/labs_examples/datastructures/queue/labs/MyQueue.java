@@ -8,28 +8,24 @@ public class MyQueue<T> {
     private static final int INITIAL_SIZE = 10; //we start with 10 for the array size
     private T[] array; //initialize the underlying array to hold the objects in the queue
 
-    private int currentEmptyIndex; //***index variable, VERY important!***
-
-    private int oldestElement;
-    private int newestElement;
-    private int numElements;
+    private int oldestElement; //keeping track of oldest element (i.e. the first one to go out of the queue, to be dequeued)
+    private int currentEmptyIndex; //current index after last element in the underlying array
+    private int numElements; //keeping track of num of elements in the queue, e.g. to resize the underlying array if necessary
 
     public MyQueue() {
         array = (T[]) new Object[INITIAL_SIZE];//declare the array with the INITIAL_SIZE length
-        currentEmptyIndex = 0;//start at 0
         oldestElement = 0;
-        newestElement = 0;
+        currentEmptyIndex = 0;
     }
 
     public void enqueue(T value) {
         checkToResize();
-        array[newestElement] = value; //set the value at currentEmptyIndex
-        newestElement++; //Increment newest element
+        array[currentEmptyIndex] = value; //set the value at newest element
+        currentEmptyIndex++; //Increment newest element
         numElements++; //Increment num of elements
     }
 
     public T dequeue() throws QueueEmptyException {
-        checkToResize();
         if ((checkIfEmpty())) { //if queue is empty
             return null;
         } else {
@@ -40,6 +36,15 @@ public class MyQueue<T> {
             checkToResize(); //start downsizing if necessary
             return popValue; //return the stored value that's now been deleted from queue
         }
+    }
+
+    public int search(T val) {
+        for (int i = 0; i < array.length; i++) { //iterate over the array
+            if (array[i] == val) { //search for value
+                return i; //return distance from the first element of the queue
+            }
+        }
+        return -1; //if not found, return -1
     }
 
     public T peekFirst() throws QueueEmptyException{ //as in the first one to be out
@@ -54,7 +59,7 @@ public class MyQueue<T> {
         if ((checkIfEmpty())) { //if queue is empty
             return null;
         } else {
-            return array[newestElement - 1];
+            return array[currentEmptyIndex - 1];
         }
     }
 
@@ -91,7 +96,7 @@ public class MyQueue<T> {
     //Clear out the queue
     public void clear() {
         array = (T[]) new Object[INITIAL_SIZE];//declare the array with the INITIAL_SIZE length
-        newestElement = 0;
+        currentEmptyIndex = 0;
         oldestElement = 0;
         numElements = 0;
     }
@@ -103,14 +108,16 @@ public class MyQueue<T> {
     private void shuffle() {
         if (oldestElement > array.length * 0.3) {
             int count = 0;
-            for (int i = oldestElement; i < newestElement; i++) {
+            for (int i = oldestElement; i < currentEmptyIndex; i++) {
                 array[count] = array[i];
                 array[i] = null;
                 count++;
             }
+            oldestElement = 0;
+            currentEmptyIndex = count;
         }
-    }
 
+    }
 
     private void checkToResize() {
         shuffle();
