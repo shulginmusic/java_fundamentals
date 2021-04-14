@@ -18,11 +18,21 @@ public class MyQueue<T> {
         currentEmptyIndex = 0;
     }
 
-    public void enqueue(T value) {
-        checkToResize();
-        array[currentEmptyIndex] = value; //set the value at newest element
-        currentEmptyIndex++; //Increment newest element
-        numElements++; //Increment num of elements
+    public void enqueue(T value) throws QueueEmptyException {
+        //This if block may seem redundant, but the indexes need to be reset after clearing the array
+        // without the clear() method, and this is an easy way to solve that problem
+        if (size() == 0) {
+            array[0] = value;
+            currentEmptyIndex = 1; //this index would be 2 if the array was dequeued a 100 times to empty
+            oldestElement = 0; ////this index would be 2 if the array was dequeued a 100 times to empty
+            numElements++;
+        } else {
+            checkToResize();
+            array[currentEmptyIndex] = value; //set the value at newest element
+            currentEmptyIndex++; //Increment newest element
+            numElements++; //Increment num of elements
+        }
+
     }
 
     public T dequeue() throws QueueEmptyException {
@@ -119,7 +129,7 @@ public class MyQueue<T> {
 
     }
 
-    private void checkToResize() {
+    private void checkToResize() throws QueueEmptyException {
         shuffle();
         //Find out the current size to array length ratio
         double sizeToLengthRatio = (double) size() / array.length;
@@ -134,6 +144,10 @@ public class MyQueue<T> {
             int newArrayLength = array.length / 2;
             array = Arrays.copyOf(array, newArrayLength); //set array to a copy of itself with a new size
         }
+//        if (checkIfEmpty()) {
+//            oldestElement = 0;
+//            currentEmptyIndex = 0;
+//        }
     }
 
     //Check if empty, throw custom exception

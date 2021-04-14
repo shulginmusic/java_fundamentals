@@ -4,6 +4,6 @@ public class QueueEmptyException extends Exception {
     //This exception is thrown when the queue is empty
     @Override
     public String toString() {
-        return "StackEmptyException{ Queue is empty! }";
+        return "QueueEmptyException{ Queue is empty! }";
     }
 }
