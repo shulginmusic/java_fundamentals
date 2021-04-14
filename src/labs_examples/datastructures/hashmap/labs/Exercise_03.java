@@ -1,5 +1,11 @@
 package labs_examples.datastructures.hashmap.labs;
 
+import labs_examples.datastructures.linkedlist.labs.MyLinkedList;
+import labs_examples.datastructures.queue.labs.MyQueue;
+import labs_examples.datastructures.queue.labs.QueueEmptyException;
+import labs_examples.datastructures.stack.labs.MyStack;
+import labs_examples.datastructures.stack.labs.StackEmptyException;
+
 import java.util.*;
 
 /**
@@ -25,7 +31,7 @@ import java.util.*;
 //for the timer, thanks to https://www.baeldung.com/java-measure-elapsed-time
 
 public class Exercise_03 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws StackEmptyException, QueueEmptyException {
         //Java built-in data structures
 
         LinkedList<Integer> javaLinkedList = new LinkedList<>();
@@ -33,10 +39,20 @@ public class Exercise_03 {
         PriorityQueue<Integer> javaPriorityQueue = new PriorityQueue<>();
         HashMap<Integer, Integer> javaHashMap = new HashMap<>();
 
+        //Custom built data structures by me
+
+        MyLinkedList<Integer> myLinkedList = new MyLinkedList<>();
+        MyStack<Integer> myStack = new MyStack<>();
+        MyQueue<Integer> myQueue = new MyQueue<>();
+        CustomHashRewritten<Integer, Integer> myHashMap = new CustomHashRewritten<>();
+
+        //Long variables for time tracking
+
         long start = 0;
         long finish = 0;
         long timeElapsed = finish - start;
 
+        //JAVA BUILT-IN DATASTRUCTURES TESTING
 
         System.out.println("-----------------------");
         System.out.println("Java built-in data structures testing");
@@ -212,6 +228,148 @@ public class Exercise_03 {
         timeElapsed = finish - start;
         System.out.println("Milliseconds to clear: " + timeElapsed);
         System.out.println("-----------------------");
+
+        //CUSTOM TESTING
+
+        System.out.println("-----------------------");
+        System.out.println("Custom data structures testing");
+        System.out.println("-----------------------");
+
+        //LINKED LIST
+        System.out.println("Custom Linked List");
+
+        //add 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myLinkedList.add(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to add 100 elements: " + timeElapsed);
+
+        //update 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myLinkedList.add(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to update 100 elements: " + timeElapsed);
+
+        //search for 100 elements
+        start = System.currentTimeMillis();
+        search = 0;
+        for (int i = 0; i < 100; i++) {
+            try {
+                search = myLinkedList.get(i); //although this is get by value, so some will be like "no such value"
+            } catch (NullPointerException exc) {
+                ;
+            }
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to search 100 elements: " + timeElapsed);
+
+        //delete  100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myLinkedList.remove(0); //although this is get by value, so some will be like "no such value"
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to delete 100 elements: " + timeElapsed);
+        System.out.println("-----------------------");
+
+        //STACK
+        System.out.println("Custom Stack");
+
+        //add 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myStack.push(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to add 100 elements: " + timeElapsed);
+
+        //update 100 elements
+        start = System.currentTimeMillis();
+
+        //First delete 100 elements
+        myStack.clear();
+        //Then push new 100 elements
+        for (int i = 0; i < 100; i++) {
+            myStack.push(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to update 100 elements: " + timeElapsed);
+
+//        search for 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            System.out.println(myStack.search(generateRandom()));
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to search 100 elements: " + timeElapsed);
+
+
+        //delete  100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myStack.pop();
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to delete 100 elements: " + timeElapsed);
+        System.out.println("-----------------------");
+
+        //QUEUE
+        System.out.println("Custom Queue");
+
+        //ADD 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myQueue.enqueue(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to add 100 elements: " + timeElapsed);
+
+        //UPDATE 100 elements
+        start = System.currentTimeMillis();
+
+        //First delete 100 elements
+        myQueue.clear();
+        //Then push new 100 elements
+        for (int i = 0; i < 100; i++) {
+            myQueue.enqueue(generateRandom());
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to update 100 elements: " + timeElapsed);
+
+        //search for 100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            System.out.println(myQueue.search(generateRandom()));
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to search 100 elements: " + timeElapsed);
+
+        //delete  100 elements
+        start = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            myQueue.dequeue();
+        }
+        finish = System.currentTimeMillis();
+        timeElapsed = finish - start;
+        System.out.println("Milliseconds to delete 100 elements: " + timeElapsed);
+        System.out.println("-----------------------");
+
+
 
 
     }
