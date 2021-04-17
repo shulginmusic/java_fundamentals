@@ -14,3 +14,9 @@ package labs_examples.datastructures.trees.labs;
         7.) Keep the tree well balanced
 
  */
+
+public class Exercise_01 {
+    public static void main(String[] args) {
+
+    }
+}
