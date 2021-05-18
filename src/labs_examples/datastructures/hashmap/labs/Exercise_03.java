@@ -160,7 +160,7 @@ public class Exercise_03 {
         timeElapsed = finish - start;
         System.out.println("Milliseconds to search 100 elements: " + timeElapsed);
 
-        //delete  100 elements
+        
         start = System.currentTimeMillis();
         for (int i = 0; i < javaPriorityQueue.size(); i++) {
             javaPriorityQueue.remove();
