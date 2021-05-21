@@ -96,7 +96,8 @@ public class Exercise_01 {
         }
 
         private Node rebalanceInsert(Node node, int data) {
-            
+            //get heights of child nodes
+            int leftHeight = height(node.leftChild);
         }
 
     }
