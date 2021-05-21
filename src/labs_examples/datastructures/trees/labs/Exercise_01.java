@@ -16,6 +16,7 @@ package labs_examples.datastructures.trees.labs;
  */
 
 public class Exercise_01 {
+<<<<<<< HEAD
 
     /**
      * A simple inner node class
@@ -103,4 +104,9 @@ public class Exercise_01 {
     }
 
 
+=======
+    public static void main(String[] args) {
+
+    }
+>>>>>>> 4ddb67a19bdad73af651c5b855973bec48221abc
 }

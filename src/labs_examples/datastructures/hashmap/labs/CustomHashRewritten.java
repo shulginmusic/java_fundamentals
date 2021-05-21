@@ -34,7 +34,7 @@ public class CustomHashRewritten<Key, Value> {
 
     //METHODS
 
-    //________PUBLIC INTERNAL METHODS________
+    //________PUBLIC METHODS________
 
     public void insert(Key key, Value value) {
         //generate the index for the key
@@ -92,6 +92,20 @@ public class CustomHashRewritten<Key, Value> {
                 System.out.println("No such key - value in hashmap to retrieve");
                 return null; //if it's not found
             }
+        }
+    }
+
+    public void update(Key key, Value val) {
+        //if no such key exists
+        //First get the index for the key
+        int nodeIndex = getIndex(key);
+        if (array[nodeIndex] == null) {
+            System.out.println("Unable to update - No such key in hashmap");
+            return;
+        } else {
+            Node<Key, Value> node = getNode(key);
+            delete(key);
+            insert(key, val);
         }
     }
 
@@ -205,13 +219,12 @@ public class CustomHashRewritten<Key, Value> {
     private void checkToResize() {
         //Find out the current size to array length ratio
         double sizeToLengthRatio = (double) size() / array.length;
-        //if greater than .75%, or 3/4, double the stack size
         if ((sizeToLengthRatio) > 0.5) { //resize the HashMap when the underlying array is more than half full
             //increase underlying array length X3
             increaseSize();
         }
         if ((sizeToLengthRatio) <= 0.25 && size() > 10) {
-            decreaseSize();
+//            decreaseSize();
         }
     }
 
@@ -230,54 +243,86 @@ public class CustomHashRewritten<Key, Value> {
                 //Get node at the index of i
                 Node<Key, Value> node = oldArray[i];
 
-                //insert the node into the new underlying array
-                insert(node.key, node.value); //this is called from within and is done on the new array declared above
+//                //insert the node into the new underlying array
+//                insert(node.key, node.value); //this is called from within and is done on the new array declared above
 
                 //check if the node is a linked list node
                 if (node.previous != null) {
-                    Node<Key, Value> iterator = node.previous;
-                    while (iterator != null) {
+                    Node<Key, Value> iterator = node;
+                    while (iterator.previous != null) {
                         //add the node to the underlying array
                         insert(iterator.getKey(), iterator.getValue());
                         //keep iterating
                         iterator = iterator.previous;
                     }
+                } else {
+                    //not a linked list, simply insert the node into the new underlying array
+                    insert(node.key, node.value); //this is called from within and is done on the new array declared above
                 }
             }
         }
     }
 
 
-    private void decreaseSize() {
-        //Copy old underlying array
-        Node<Key, Value>[] oldArray = array;
+//    private void decreaseSize() {
+//        //Copy old underlying array
+//        Node<Key, Value>[] oldArray = array;
+//
+//        //Declare new underlying array that is half the size of the old one
+//        array = new Node[oldArray.length / 2];
+//        //Reset size
+//        size = 0;
+//
+//        //iterate over the old array
+//        for (int i = 0; i < oldArray.length; i++) {
+//            try {
+//                //Get node at the index of i
+//                Node<Key, Value> node = oldArray[i];
+//
+//                //insert the node into the new underlying array
+//                insert(node.key, node.value); //this is called from within and is done on the new array declared above
+//
+//                //check if the node is a linked list node
+//                if (node.previous != null) {
+//                    Node<Key, Value> iterator = node.previous;
+//                    while (iterator != null) {
+//                        //add the node to the underlying array
+//                        insert(iterator.getKey(), iterator.getValue());
+//                        //keep iterating
+//                        iterator = iterator.previous;
+//                    }
+//                }
+//            } catch (Exception e) {
+//                ; //nothing to be done here, this is for empty indexes
+//            }
+//        }
+//    }
 
-        //Declare new underlying array that is half the size of the old one
-        array = new Node[oldArray.length / 2];
-        //Reset size
-        size = 0;
+    private Node getNode(Key key) {
+        //First get the index for the key
+        int nodeIndex = getIndex(key);
 
-        //iterate over the old array
-        for (int i = 0; i < oldArray.length; i++) {
-            try {
-                //Get node at the index of i
-                Node<Key, Value> node = oldArray[i];
+        //if nothing is at the index of the key, return null
+        if (array[nodeIndex] == null) {
+            System.out.println("No such key - value in hashmap to retrieve");
+            return null;
+        }
 
-                //insert the node into the new underlying array
-                insert(node.key, node.value); //this is called from within and is done on the new array declared above
-
-                //check if the node is a linked list node
-                if (node.previous != null) {
-                    Node<Key, Value> iterator = node.previous;
-                    while (iterator != null) {
-                        //add the node to the underlying array
-                        insert(iterator.getKey(), iterator.getValue());
-                        //keep iterating
-                        iterator = iterator.previous;
-                    }
-                }
-            } catch (Exception e) {
-                ; //nothing to be done here, this is for empty indexes
+        //If something is at the index, get it or iterate over the linked list if there is one
+        Node<Key, Value> node = array[nodeIndex];
+        if (node.getKey().equals(key)) {
+            return node; //if the key is at this index
+        } else {
+            //iterate over the linked list
+            while (!node.getKey().equals(key) && node.previous != null) {
+                node = node.previous;
+            }
+            //We have now reached the end of the linked list and/or have found the key
+            if (node.getKey().equals(key)) {
+                return node; //if key is found
+            } else {
+                System.out.println("No such key - value in hashmap to retrieve");
+                return null; //if it's not found
             }
         }
     }
